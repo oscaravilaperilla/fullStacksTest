@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import colors from "../constants/colors";
 import Status from "./Status";
+import Block from "./Block";
 
 const Node = ({ node, expanded, toggleNodeExpanded }) => {
   const classes = useStyles();
@@ -46,7 +47,15 @@ const Node = ({ node, expanded, toggleNodeExpanded }) => {
         </Box>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        <Typography>Blocks go here</Typography>
+        <Box width={1}>
+          {node.blocks ? (
+            node.blocks.map((item) => {
+              return <Block key={item.id} item={item} />;
+            })
+          ) : (
+            <Typography>blocks not found</Typography>
+          )}
+        </Box>
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
